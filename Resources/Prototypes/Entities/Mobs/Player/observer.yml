@@ -39,6 +39,9 @@
   description: Boo!
   categories: [ HideSpawnMenu ]
   components:
+  - type: ZLevelPhysics
+    fallable: false
+    velocityGravity: false
   - type: Sprite
     sprite: Mobs/Ghosts/ghost_human.rsi
     color: "#fff8"

@@ -1,7 +1,10 @@
 using System.Numerics;
 using Content.Client.Parallax.Managers;
+using Content.Client.Viewport;
+using Content.Client.ZLevels;
 using Content.Shared.CCVar;
 using Content.Shared.Parallax.Biomes;
+using Content.Shared.ZLevels;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Shared.Configuration;
@@ -21,6 +24,7 @@ public sealed partial class ParallaxOverlay : Overlay
     [Dependency] private IParallaxManager _manager = default!;
     private readonly SharedMapSystem _mapSystem;
     private readonly ParallaxSystem _parallax;
+    private readonly SharedZLevelSystem _zLevels;
 
     public override OverlaySpace Space => OverlaySpace.WorldSpaceBelowWorld;
 
@@ -30,6 +34,7 @@ public sealed partial class ParallaxOverlay : Overlay
         IoCManager.InjectDependencies(this);
         _mapSystem = _entManager.System<SharedMapSystem>();
         _parallax = _entManager.System<ParallaxSystem>();
+        _zLevels = _entManager.System<ZLevelSystem>();
     }
 
     protected override bool BeforeDraw(in OverlayDrawArgs args)
@@ -37,7 +42,10 @@ public sealed partial class ParallaxOverlay : Overlay
         if (args.MapId == MapId.Nullspace || _entManager.HasComponent<BiomeComponent>(_mapSystem.GetMapOrInvalid(args.MapId)))
             return false;
 
-        return true;
+        if (args.Viewport.Eye is ScalingViewport.ZEye zEye)
+            return zEye.LowestDepth == zEye.Depth;
+
+        return !_zLevels.TryMapDown(args.MapUid, out _);
     }
 
     protected override void Draw(in OverlayDrawArgs args)
@@ -52,7 +60,7 @@ public sealed partial class ParallaxOverlay : Overlay
         var worldHandle = args.WorldHandle;
 
         var layers = _parallax.GetParallaxLayers(args.MapId);
-        var realTime = (float) _timing.RealTime.TotalSeconds;
+        var realTime = (float)_timing.RealTime.TotalSeconds;
 
         foreach (var layer in layers)
         {
@@ -67,7 +75,7 @@ public sealed partial class ParallaxOverlay : Overlay
             var tex = layer.Texture;
 
             // Size of the texture in world units.
-            var size = (tex.Size / (float) EyeManager.PixelsPerMeter) * layer.Config.Scale;
+            var size = (tex.Size / (float)EyeManager.PixelsPerMeter) * layer.Config.Scale;
 
             // The "home" position is the effective origin of this layer.
             // Parallax shifting is relative to the home, and shifts away from the home and towards the Eye centre.

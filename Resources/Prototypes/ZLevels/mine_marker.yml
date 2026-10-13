@@ -1,0 +1,20 @@
+
+- type: entity
+  name: Z-level mine marker
+  id: ZLevelMineMarker
+  parent: MarkerBase
+  description: Generates a multi-level snowdrift ore mine when the map loads. Configure in the prototype or via VV.
+  suffix: Deep Mine
+  components:
+  - type: Sprite
+    layers:
+    - sprite: Markers/cross.rsi
+      state: blue
+      shader: unshaded
+  - type: ZLevelMineMarker
+    size: 32, 32
+    levels: 3
+    openFraction: 0.18
+    oreChance: 0.06
+    veinsPerLevel: 20
+    veinSize: 3, 8

@@ -1,0 +1,10 @@
+- type: entity
+  parent: BaseAction
+  id: ZLevelActionToggleLookUp
+  name: Look Up
+  description: Peer at the Z-levels above you.
+  components:
+  - type: Action
+    useDelay: 0.5
+  - type: InstantAction
+    event: !type:ZLevelToggleLookUpEvent
