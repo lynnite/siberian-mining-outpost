@@ -1,0 +1,64 @@
+
+- type: entity
+  abstract: true
+  id: BaseZLevelMineFloor
+  name: packed snow
+  description: Packed snow and rock. Dig through it with a pickaxe to reach the level below.
+  components:
+  - type: Transform
+    noRot: true
+    anchored: true
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Appearance
+  - type: Sprite
+    drawdepth: FloorTiles
+    layers:
+    - texture: /Textures/Tiles/Snow/snow-plating.png
+      color: "#ffffffcc"
+  - type: Damageable
+    damageModifierSet: RockMod
+  - type: Injurable
+    damageContainer: StructuralInorganic
+  - type: Destructible
+  - type: SoundOnGather
+  - type: Gatherable
+    toolWhitelist:
+      tags:
+      - Pickaxe
+  - type: ZLevelDiggableFloor
+  - type: ZLevelMineFloor
+  - type: Physics
+    bodyType: Static
+    canCollide: false
+
+- type: entity
+  parent: BaseZLevelMineFloor
+  id: ZLevelMineFloor
+
+- type: entity
+  abstract: true
+  id: BaseZLevelMineFloorBedrock
+  name: bedrock
+  description: Impossibly dense bedrock. You cannot dig through this.
+  components:
+  - type: Transform
+    noRot: true
+    anchored: true
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Sprite
+    drawdepth: FloorTiles
+    layers:
+    - texture: /Textures/Tiles/Snow/snow-plating.png
+      color: "#8a8a8aff"
+  - type: ZLevelMineFloor
+  - type: Physics
+    bodyType: Static
+    canCollide: false
+
+- type: entity
+  parent: BaseZLevelMineFloorBedrock
+  id: ZLevelMineFloorBedrock
+
+

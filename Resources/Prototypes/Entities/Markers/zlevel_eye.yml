@@ -1,0 +1,14 @@
+- type: entity
+  id: ZLevelEye
+  name: z-level eye
+  description: helper
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Transform
+    anchored: true
+  - type: Marker
+  - type: Sprite
+    visible: false
+    drawdepth: Overdoors
+    sprite: Markers/cross.rsi
+    state: blue

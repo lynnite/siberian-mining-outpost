@@ -123,6 +123,8 @@ public sealed partial class ContentTileDefinition : IPrototype, IInheritingProto
     /// </summary>
     [DataField] public bool Weather = false;
 
+    [DataField] public bool Transparent = false;
+
     /// <summary>
     /// Is this tile immune to RCD deconstruct.
     /// </summary>

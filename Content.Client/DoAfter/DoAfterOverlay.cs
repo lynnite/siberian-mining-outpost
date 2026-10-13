@@ -158,14 +158,14 @@ public sealed class DoAfterOverlay : Overlay
                 if (doAfter.CancelledTime != null)
                 {
                     elapsed = doAfter.CancelledTime.Value - doAfter.StartTime;
-                    elapsedRatio = (float)Math.Min(1, elapsed.TotalSeconds / doAfter.Args.Delay.TotalSeconds);
+                    elapsedRatio = GetElapsedRatio(elapsed, doAfter.Args.Delay);
                     var cancelElapsed = (time - doAfter.CancelledTime.Value).TotalSeconds;
                     var flash = Math.Floor(cancelElapsed / FlashTime) % 2 == 0;
                     color = GetProgressColor(0, flash ? alpha : 0);
                 }
                 else
                 {
-                    elapsedRatio = (float)Math.Min(1, elapsed.TotalSeconds / doAfter.Args.Delay.TotalSeconds);
+                    elapsedRatio = GetElapsedRatio(elapsed, doAfter.Args.Delay);
                     color = GetProgressColor(elapsedRatio, alpha);
                 }
 
@@ -184,5 +184,13 @@ public sealed class DoAfterOverlay : Overlay
     public Color GetProgressColor(float progress, float alpha = 1f)
     {
         return _progressColor.GetProgressColor(progress).WithAlpha(alpha);
+    }
+
+    private static float GetElapsedRatio(TimeSpan elapsed, TimeSpan delay)
+    {
+        if (delay <= TimeSpan.Zero)
+            return 1f;
+
+        return (float)Math.Clamp(elapsed.TotalSeconds / delay.TotalSeconds, 0.0, 1.0);
     }
 }

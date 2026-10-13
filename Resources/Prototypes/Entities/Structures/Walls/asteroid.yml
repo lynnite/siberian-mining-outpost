@@ -22,6 +22,7 @@
   - type: Sprite
     drawdepth: Walls
   - type: MiningScannerViewable
+  - type: ZLevelClimbable
   - type: Fixtures
     fixtures:
       fix1:
@@ -497,6 +498,7 @@
   - type: MiningScannerViewable
   - type: Sprite
     sprite: Structures/Walls/stone-dirt.rsi
+  - type: ZLevelClimbable
 
 # Ore veins
 - type: entity

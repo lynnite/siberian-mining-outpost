@@ -30,6 +30,7 @@ using Content.Shared.Timing.Systems;
 using Content.Shared.UserInterface;
 using Content.Shared.Verbs;
 using Content.Shared.Wall;
+using Content.Shared.ZLevels;
 using JetBrains.Annotations;
 using Robust.Shared.Containers;
 using Robust.Shared.Input;
@@ -72,6 +73,7 @@ namespace Content.Shared.Interaction
         [Dependency] private SharedPlayerRateLimitManager _rateLimit = default!;
         [Dependency] private TagSystem _tagSystem = default!;
         [Dependency] private UseDelaySystem _useDelay = default!;
+        [Dependency] private SharedZLevelSystem _zLevel = default!;
 
         [Dependency] private EntityQuery<IgnoreUIRangeComponent> _ignoreUiRangeQuery = default!;
         [Dependency] private EntityQuery<FixturesComponent> _fixtureQuery = default!;
@@ -484,6 +486,14 @@ namespace Content.Shared.Interaction
             return TerminatingOrDeleted(uid) || EntityManager.IsQueuedForDeletion(uid);
         }
 
+        private bool IsInSameContainerHierarchy(EntityUid a, EntityUid b)
+        {
+            if (!_containerSystem.IsInSameOrParentContainer(a, b, out var aContainer, out var bContainer))
+                return false;
+
+            return aContainer != null || bContainer != null;
+        }
+
         private bool IsDeleted(EntityUid? uid)
         {
             //optional / null entities can pass this validation check. I.e., is-deleted returns false for null uids
@@ -700,6 +710,15 @@ namespace Content.Shared.Interaction
         {
             if (!Resolve(other, ref other.Comp))
                 return false;
+
+            if (!_zLevel.IsOnSameZLevel(origin.Owner, other.Owner) &&
+                !IsInSameContainerHierarchy(origin.Owner, other.Owner))
+            {
+                if (popup && _gameTiming.IsFirstTimePredicted)
+                    _popupSystem.PopupEntity(Loc.GetString("interaction-system-user-interaction-cannot-reach"), origin, origin);
+
+                return false;
+            }
 
             var ev = new InRangeOverrideEvent(origin, other);
             RaiseLocalEvent(origin, ref ev);

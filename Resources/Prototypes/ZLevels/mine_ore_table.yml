@@ -1,0 +1,16 @@
+- type: weightedRandomEntity
+  id: ZLevelMineSnowOreWalls
+  weights:
+    WallRockSnow: 90
+    # Common
+    WallRockSnowCoal: 6
+    WallRockSnowTin: 5
+    WallRockSnowQuartz: 5
+    WallRockSnowSalt: 4
+    # Uncommon
+    WallRockSnowSilver: 3
+    WallRockSnowGold: 3
+    WallRockSnowPlasma: 2
+    # Rare
+    WallRockSnowUranium: 1
+    WallRockSnowDiamond: 1

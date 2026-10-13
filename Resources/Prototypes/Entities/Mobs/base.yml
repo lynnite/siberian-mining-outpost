@@ -8,6 +8,7 @@
     noRot: true
     drawdepth: Mobs
   - type: GravityAffected
+  - type: ZLevelPhysics
   - type: Physics
   - type: Fixtures
     fixtures:
