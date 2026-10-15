@@ -1,0 +1,22 @@
+- type: entity
+  id: CargoPalletIndestructible
+  name: cargo pallet
+  description: Common fixture of logistics and cargo. Subtle reminder where crates go during transport to avoid bruised shins.
+  suffix: indestructible
+  parent: BaseCargoPallet
+  components:
+  - type: Fixtures
+    fixtures: {}
+  - type: CargoPallet
+    palletType: All
+  - type: Sprite
+    drawdepth: FloorTiles
+    sprite: Structures/cargo_pallets.rsi
+    state: cargo_pallet_sell
+  - type: Icon
+    sprite: Structures/cargo_pallets.rsi
+    state: cargo_pallet_sell
+  - type: IconSmooth
+    key: cargo_pallet_sell
+    base: cargo_pallet_sell_
+

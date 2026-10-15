@@ -1,0 +1,11 @@
+- type: trainOrderProduct
+  id: TrainProductSteelSheet
+  product: SheetSteel1
+  keywords:
+  - steel
+  - steel sheet
+  - steel sheets
+  - metal
+  - metal sheet
+  - metal sheets
+  price: 5

@@ -1,0 +1,37 @@
+- type: entity
+  parent: MarkerBase
+  id: TrainStartMarker
+  name: train start marker
+  description: spawn, start
+  suffix: train
+  components:
+  - type: Sprite
+    sprite: Markers/cross.rsi
+    state: green
+  - type: TrainStartMarker
+
+- type: entity
+  parent: MarkerBase
+  id: TrainEndMarker
+  name: train end marker
+  description: end, deletion
+  suffix: train
+  components:
+  - type: Sprite
+    sprite: Markers/cross.rsi
+    state: red
+  - type: TrainEndMarker
+
+- type: entity
+  parent: MarkerBase
+  id: TrainStopMarker
+  name: train stop marker
+  description: stop
+  suffix: train
+  components:
+  - type: Sprite
+    sprite: Markers/cross.rsi
+    state: blue
+  - type: TrainStopMarker
+    stopDuration: 10
+

@@ -1,0 +1,40 @@
+- type: entity
+  id: PaperTrainOrder
+  parent: Paper
+  name: supply order form
+  description: A form for ordering supplies by train. Write the item and amount, e.g. "Steel sheet 1x", then place it aboard the train.
+  components:
+  - type: TrainOrderPaper
+  - type: Fixtures
+    fixtures: {}
+  - type: Paper
+    content: paper-train-order-blank
+  - type: Sprite
+    sprite: Objects/Misc/bureaucracy.rsi
+    layers:
+    - state: paper
+      color: "#c7a76a"
+    - state: paper_words
+      map: ["enum.PaperVisualLayers.Writing"]
+      color: "#c7a76a"
+      visible: false
+    - state: paper_stamp-generic
+      map: ["enum.PaperVisualLayers.Stamp"]
+      visible: false
+  - type: PaperVisuals
+    backgroundImagePath: "/Textures/Interface/Paper/paper_background_default.svg.96dpi.png"
+    contentImagePath: "/Textures/Interface/Paper/paper_content_lined.svg.96dpi.png"
+    backgroundModulate: "#c7a76a"
+    contentImageModulate: "#c7a76a"
+    backgroundPatchMargin: 16.0, 16.0, 16.0, 16.0
+    contentMargin: 16.0, 16.0, 16.0, 16.0
+    headerImagePath: "/Textures/Interface/Paper/paper_heading_cargo_invoice.svg.96dpi.png"
+    headerMargin: 0.0, 0.0, 0.0, 12.0
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: paper-inhand-left
+        color: "#c7a76a"
+      right:
+      - state: paper-inhand-right
+        color: "#c7a76a"
