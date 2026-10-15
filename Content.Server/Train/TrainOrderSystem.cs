@@ -155,7 +155,7 @@ public sealed partial class TrainOrderSystem : EntitySystem
         if (!ProtoMan.TryIndex<TrainOrderProductPrototype>(FindProductFor(proto.ID), out var orderProto))
             return false;
 
-        if (spawner.Owner is not { } stationUid)
+        if (spawner.Station is not { } stationUid)
             return true;
 
         var cost = orderProto.Price * quantity;

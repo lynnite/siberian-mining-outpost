@@ -50,5 +50,5 @@ public sealed partial class TrainSpawnerComponent : Component
     public List<TrainDelivery> PendingDeliveries = new();
 
     [DataField]
-    public EntityUid? Owner;
+    public EntityUid? Station;
 }

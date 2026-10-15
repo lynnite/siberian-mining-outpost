@@ -90,7 +90,7 @@ public sealed partial class TrainSystem : EntitySystem
 
         var spawner = EnsureComp<TrainSpawnerComponent>(mapUid);
         spawner.Route = route;
-        spawner.Owner = owner;
+        spawner.Station = owner;
         Dirty(mapUid, spawner);
 
         return SpawnTrain(route, startPos, toEnd, mapId);
