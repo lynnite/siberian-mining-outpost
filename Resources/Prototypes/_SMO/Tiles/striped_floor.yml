@@ -1,0 +1,12 @@
+- type: tile
+  id: FloorDarkHorizontalSlatsBorderedIndestructible
+  name: tiles-smo-striped-floor
+  sprite: /Textures/Tiles/Basic/Dark/dark-horizontal-slats.png
+  isSubfloor: false
+  deconstructTools: [ ] # cannot be pried up
+  footstepSounds:
+    collection: FootstepFloor
+  heatCapacity: 10000
+  weather: false
+  baseTurf: Plating
+  itemDrop: null
