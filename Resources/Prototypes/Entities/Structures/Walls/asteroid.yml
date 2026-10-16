@@ -481,6 +481,7 @@
       - Pickaxe
   - type: Damageable
     damageModifierSet: RockMod
+  - type: RockComposition
   - type: Destructible
     thresholds:
     - trigger:

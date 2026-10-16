@@ -1494,6 +1494,9 @@
   id: UraniumGlassShard # ConstructionGraph: ImprovisedArrowUranium, UraniumShiv, SpearUranium
 
 - type: Tag
+  id: UnidentifiedRock
+
+- type: Tag
   id: UtilityBelt # ConstructionGraph: scraparmor
 
 - type: Tag

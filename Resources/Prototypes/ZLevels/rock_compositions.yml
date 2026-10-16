@@ -1,0 +1,66 @@
+- type: rockComposition
+  id: Basalt
+  name: rock-basalt
+  prevalence: 30
+  sprite:
+    sprite: Objects/Materials/ore.rsi
+    state: rock
+
+- type: rockComposition
+  id: Gabbro
+  name: rock-gabbro
+  prevalence: 22
+  sprite:
+    sprite: Objects/Materials/ore.rsi
+    state: rock
+
+- type: rockComposition
+  id: Granite
+  name: rock-granite
+  prevalence: 18
+  sprite:
+    sprite: Objects/Materials/ore.rsi
+    state: rock
+
+- type: rockComposition
+  id: Limestone
+  name: rock-limestone
+  prevalence: 14
+  sprite:
+    sprite: Objects/Materials/ore.rsi
+    state: rock
+
+- type: rockComposition
+  id: Peridotite
+  name: rock-peridotite
+  prevalence: 8
+  sprite:
+    sprite: Objects/Materials/ore.rsi
+    state: rock
+
+- type: rockComposition
+  id: Tuff
+  name: rock-tuff
+  prevalence: 5
+  sprite:
+    sprite: Objects/Materials/ore.rsi
+    state: rock
+
+- type: rockComposition
+  id: Slate
+  name: rock-slate
+  prevalence: 3
+  sprite:
+    sprite: Objects/Materials/ore.rsi
+    state: rock
+
+- type: rockDistribution
+  id: SiberianRockDistribution
+  rocks:
+    Basalt: 30
+    Gabbro: 22
+    Granite: 18
+    Limestone: 14
+    Peridotite: 8
+    Tuff: 5
+    Slate: 3
