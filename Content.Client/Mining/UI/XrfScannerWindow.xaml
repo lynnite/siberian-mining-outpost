@@ -1,0 +1,29 @@
+<controls:FancyWindow
+    xmlns="https://spacestation14.io"
+    xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+    MaxHeight="525"
+    MinWidth="320">
+    <ScrollContainer
+        Margin="5 5 5 5"
+        ReturnMeasure="True"
+        VerticalExpand="True">
+        <BoxContainer Orientation="Vertical" VerticalExpand="True">
+            <Label Name="NoDataLabel"
+                   Text="{Loc 'xrf-scanner-window-no-data'}"
+               Visible="false"
+               Margin="0 6 0 0"/>
+
+            <BoxContainer Name="ContentContainer" Orientation="Vertical">
+                <BoxContainer Name="RockContainer" Orientation="Vertical"/>
+
+                <controls:Separator Name="OreSeparator" StyleClasses="LowDivider" Margin="0 6 0 0"/>
+
+                <Label Name="OreHeader" Text="{Loc 'xrf-scanner-window-ore-header'}"
+                       StyleClasses="LabelSubText"
+                       Margin="0 6 0 2"/>
+                <BoxContainer Name="OreContainer" Orientation="Vertical"/>
+            </BoxContainer>
+        </BoxContainer>
+    </ScrollContainer>
+</controls:FancyWindow>
+

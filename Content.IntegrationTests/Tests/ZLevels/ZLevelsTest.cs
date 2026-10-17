@@ -333,8 +333,10 @@ public sealed class ZLevelsTest : GameTest
 
             Assert.That(network.Comp.ZLevels.TryGetValue(0, out var topLevel), Is.True);
             Assert.That(topLevel, Is.EqualTo(anchorMap));
-            Assert.That(network.Comp.ZLevels.ContainsKey(-1), Is.True);
-            Assert.That(network.Comp.ZLevels.ContainsKey(-2), Is.True);
+
+            var deepest = network.Comp.ZLevels.Keys.Min();
+            for (var depth = -1; depth >= deepest; depth--)
+                Assert.That(network.Comp.ZLevels.ContainsKey(depth), Is.True, $"Expected level {depth}.");
 
             var wallCount = 0;
             var oreCount = 0;
@@ -413,11 +415,13 @@ public sealed class ZLevelsTest : GameTest
                 return mapSys.TryGetTileRef(levelGrid, levelGridComp, indices, out var tile) && !tile.Tile.IsEmpty;
             }
 
+            var deepest = network.Comp.ZLevels.Keys.Min();
+
             Assert.That(IsShaftFloored(0), Is.False, "Surface shaft should be open to climb/fall in.");
 
             Assert.That(IsShaftFloored(-1), Is.False, "Intermediate level shaft should stay open to fall through.");
 
-            Assert.That(IsShaftFloored(-2), Is.True, "Deepest level should have a floor to land on.");
+            Assert.That(IsShaftFloored(deepest), Is.True, "Deepest level should have a floor to land on.");
         });
     }
 
@@ -570,10 +574,12 @@ public sealed class ZLevelsTest : GameTest
                 "Entity never fell: still on the surface map. Z-level physics likely never ran on it.");
 
             var zSys = SEntMan.System<ZLevelSystem>();
-            Assert.That(zSys.TryGetMapNetwork(fallerMap!.Value, out _), Is.True,
+            Assert.That(zSys.TryGetMapNetwork(fallerMap!.Value, out var network), Is.True,
                 "Fallen entity is not on a mine level.");
 
-            Assert.That(SEntMan.GetComponent<ZLevelComponent>(fallerMap.Value).Depth, Is.EqualTo(-2),
+            var deepest = network.Comp.ZLevels.Keys.Min();
+
+            Assert.That(SEntMan.GetComponent<ZLevelComponent>(fallerMap.Value).Depth, Is.EqualTo(deepest),
                 "Entity did not fall all the way down the open shaft.");
         });
     }

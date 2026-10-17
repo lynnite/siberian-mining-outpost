@@ -1,0 +1,28 @@
+- type: entity
+  parent: BaseItem
+  id: UnidentifiedRock
+  name: unidentified rock
+  description: An untouched rock sample. Its composition is unknown until analyzed with an XRF scanner.
+  components:
+  - type: Sprite
+    sprite: Objects/Materials/ore.rsi
+    state: rock
+  - type: Item
+    size: Small
+    sprite: Objects/Materials/ore.rsi
+  - type: RockComposition
+    dropPrototype: null
+  - type: Tag
+    tags:
+    - UnidentifiedRock
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.2
+        density: 20
+        mask:
+        - ItemMask
+        restitution: 0.3
+        friction: 0.2

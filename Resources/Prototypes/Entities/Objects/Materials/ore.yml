@@ -328,6 +328,10 @@
   - type: PhysicalComposition
     materialComposition:
       RawSalt: 100
+  - type: RockComposition
+    dropPrototype: null
+    oreContent:
+      OreSalt: 100
   - type: Solution
     solution:
       reagents:

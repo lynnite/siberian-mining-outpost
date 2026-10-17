@@ -12,9 +12,10 @@
       state: blue
       shader: unshaded
   - type: ZLevelMineMarker
-    size: 32, 32
-    levels: 3
+    size: 82, 32
+    levels: 30
+    levelSpacing: 1
     openFraction: 0.18
-    oreChance: 0.06
-    veinsPerLevel: 20
+    oreChance: 0.1
+    veinsPerLevel: 40
     veinSize: 3, 8

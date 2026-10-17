@@ -1,0 +1,18 @@
+- type: entity
+  parent: BaseItem
+  id: XrfAnalyzer
+  name: XRF analyzer
+  description: A handheld X-ray fluorescence analyzer. Used to determine the composition of unidentified rock samples.
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Mining/mineral_scanner.rsi
+    state: icon
+  - type: Item
+    sprite: Objects/Specific/Mining/mineral_scanner.rsi
+    storedRotation: -90
+  - type: XrfScanner
+  - type: UserInterface
+    interfaces:
+      enum.XrfScannerUiKey.Key:
+        type: XrfScannerBoundUserInterface
+
